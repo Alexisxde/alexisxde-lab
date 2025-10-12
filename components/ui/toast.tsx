@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils"
 import { cva } from "class-variance-authority"
 import { AnimatePresence, motion } from "motion/react"
-import { createContext, useContext, useMemo, useState } from "react"
+import { createContext, useContext, useEffect, useMemo, useState } from "react"
 import { createPortal } from "react-dom"
 
 export type Variant = "default" | "error" | "warning" | "success"
@@ -76,7 +76,14 @@ export const toastVariants = cva("pointer-events-none flex items-center gap-1 ro
 })
 
 export function Toast() {
+	const [mounted, setMounted] = useState(false)
 	const { list } = useToast()
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	if (!mounted) return null
 
 	return createPortal(
 		<div className="pointer-events-none fixed top-4 z-[9999] flex w-full flex-col items-center justify-center gap-1">
