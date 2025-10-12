@@ -24,7 +24,7 @@ export interface FloatingDockProps {
 
 export function FloatingDock({ children, tooltip = true, className }: FloatingDockProps) {
 	const [isOpen, setIsOpen] = useState(false)
-	const contextValue = useMemo(() => ({ isOpen, setIsOpen, tooltip }), [isOpen])
+	const contextValue = useMemo(() => ({ isOpen, setIsOpen, tooltip }), [isOpen, setIsOpen, tooltip])
 	const dockRef = useRef<HTMLDivElement>(null!)
 
 	useEffect(() => {

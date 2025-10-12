@@ -49,22 +49,22 @@ export function DockAnchor({ title, icon, href }: DockAnchorProps) {
 	const ref = useRef<HTMLDivElement | null>(null!)
 	const { mouseX } = useDock()
 
-	let distance = useTransform(mouseX, val => {
-		let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
+	const distance = useTransform(mouseX, val => {
+		const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
 		return val - bounds.x - bounds.width / 2
 	})
 
-	let widthTransform = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_OPTION)
-	let heightTransform = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_OPTION)
+	const widthTransform = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_OPTION)
+	const heightTransform = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_OPTION)
 
-	let widthTransformIcon = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_ICON)
-	let heightTransformIcon = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_ICON)
+	const widthTransformIcon = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_ICON)
+	const heightTransformIcon = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_ICON)
 
-	let width = useSpring(widthTransform, TRANSITION)
-	let height = useSpring(heightTransform, TRANSITION)
+	const width = useSpring(widthTransform, TRANSITION)
+	const height = useSpring(heightTransform, TRANSITION)
 
-	let widthIcon = useSpring(widthTransformIcon, TRANSITION)
-	let heightIcon = useSpring(heightTransformIcon, TRANSITION)
+	const widthIcon = useSpring(widthTransformIcon, TRANSITION)
+	const heightIcon = useSpring(heightTransformIcon, TRANSITION)
 
 	return (
 		<a href={href}>
@@ -103,22 +103,22 @@ export function DockButton({ title, icon, className, onClick }: DockButtonProps)
 	const ref = useRef<HTMLDivElement | null>(null!)
 	const { mouseX } = useDock()
 
-	let distance = useTransform(mouseX, val => {
-		let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
+	const distance = useTransform(mouseX, val => {
+		const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
 		return val - bounds.x - bounds.width / 2
 	})
 
-	let widthTransform = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_OPTION)
-	let heightTransform = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_OPTION)
+	const widthTransform = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_OPTION)
+	const heightTransform = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_OPTION)
 
-	let widthTransformIcon = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_ICON)
-	let heightTransformIcon = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_ICON)
+	const widthTransformIcon = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_ICON)
+	const heightTransformIcon = useTransform(distance, INPUT_RANGE, OUTPUT_RANGE_ICON)
 
-	let width = useSpring(widthTransform, TRANSITION)
-	let height = useSpring(heightTransform, TRANSITION)
+	const width = useSpring(widthTransform, TRANSITION)
+	const height = useSpring(heightTransform, TRANSITION)
 
-	let widthIcon = useSpring(widthTransformIcon, TRANSITION)
-	let heightIcon = useSpring(heightTransformIcon, TRANSITION)
+	const widthIcon = useSpring(widthTransformIcon, TRANSITION)
+	const heightIcon = useSpring(heightTransformIcon, TRANSITION)
 
 	return (
 		<button onClick={onClick} className="cursor-pointer">

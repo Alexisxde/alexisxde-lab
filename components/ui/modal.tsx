@@ -20,7 +20,7 @@ export type ModalProps = {
 }
 
 export const ModalProvider = ({ children, isOpen, setIsOpen }: ModalProps) => {
-	const contextValue = useMemo(() => ({ isOpen, setIsOpen }), [isOpen])
+	const contextValue = useMemo(() => ({ isOpen, setIsOpen }), [isOpen, setIsOpen])
 
 	return <ModalContext.Provider value={contextValue}>{children}</ModalContext.Provider>
 }

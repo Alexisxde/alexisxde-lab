@@ -2,6 +2,7 @@
 import Button, { ButtonProps } from "@/components/ui/button"
 import useClickOutside from "@/hooks/useClickOutside"
 import { cn } from "@/lib/utils"
+import { ClassValue } from "clsx"
 import { X } from "lucide-react"
 import { AnimatePresence, motion, MotionConfig, type Transition, type Variant } from "motion/react"
 import React, { isValidElement, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react"
@@ -77,7 +78,7 @@ export function MorphingDialogTrigger({ children, className, asChild = false, ..
 
 	if (asChild && isValidElement(children)) {
 		const MotionComponent = motion.create(children.type as React.ForwardRefExoticComponent<any>)
-		const childProps = children.props as Record<string, unknown>
+		const childProps = children.props as Record<string, ClassValue>
 
 		return (
 			<MotionComponent
