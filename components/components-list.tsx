@@ -22,8 +22,8 @@ export default function ComponentsList() {
 
 	return (
 		<section className="grid grid-cols-1 gap-4 pb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:gap-16">
-			{COMPONENTS.map(({ name, example }, i) => (
-				<article key={i} className="mx-4 flex flex-col">
+			{COMPONENTS.map(({ name, example }) => (
+				<article key={name} className="mx-4 flex flex-col">
 					<div className="border-border flex h-72 w-full items-center justify-center gap-4 border-1 p-5">
 						{createElement(example)}
 					</div>

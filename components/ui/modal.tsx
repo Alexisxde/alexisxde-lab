@@ -3,7 +3,7 @@ import Button, { type ButtonProps } from "@/components/ui/button"
 import useClickOutside from "@/hooks/useClickOutside"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion, Transition } from "motion/react"
-import React, { createContext, isValidElement, useCallback, useContext, useEffect, useMemo, useRef } from "react"
+import React, { createContext, isValidElement, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
 export type ModalContextType = {
@@ -65,7 +65,15 @@ export function ModalTrigger({ children, className, asChild = false, ...props }:
 export type ModalPortalProps = { children: React.ReactNode; className?: string }
 
 function ModalPortal({ children, className }: ModalPortalProps) {
+	const [mounted, setMounted] = useState(false)
 	const { isOpen } = useModal()
+
+	useEffect(() => {
+		setMounted(true)
+		return () => setMounted(false)
+	}, [])
+
+	if (!mounted) return null
 
 	return createPortal(
 		<AnimatePresence mode="wait">
