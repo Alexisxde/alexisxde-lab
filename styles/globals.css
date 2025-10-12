@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+	--background: oklch(0.985 0 0);
+	--foreground: oklch(0.145 0 0);
+	--card: oklch(0.965 0 0);
+	--primary: oklch(0.269 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--secondary: oklch(0.922 0 0);
+	--secondary-foreground: oklch(0.205 0 0);
+	--muted: oklch(0.922 0 0);
+	--muted-foreground: oklch(0.371 0 0);
+	--accent: oklch(0.871 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(50.5% 0.213 27.518);
+	--border: oklch(0 0 0 / 10%);
+	--input: oklch(0 0 0 / 15%);
+	--icon-primary: oklch(0.205 0 0);
+	--icon-secondary: oklch(0.371 0 0);
+	--gray: oklch(0.5 0 0);
+	--scrollbar-color: rgba(0, 0, 0, 0.3);
+
+	--success: hsla(174, 90%, 41%, 1);
+	--background-success: hsla(170, 74%, 9%, 1);
+	--border-success: hsla(169, 78%, 7%, 1);
+}
+
+.dark {
+	--background: oklch(0.145 0 0);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.371 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(50.5% 0.213 27.518);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--icon-primary: oklch(0.922 0 0);
+	--icon-secondary: oklch(0.922 0 0);
+	--gray: oklch(0.708 0 0);
+	--scrollbar-color: rgba(255, 255, 255, 0.3);
+}
+
+@theme {
+	--font-family: "Poppins", Helvetica, sans-serif;
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-gray: var(--gray);
+	--color-input: var(--input);
+	--color-icon-primary: var(--icon-primary);
+	--color-icon-secondary: var(--icon-secondary);
+
+	--color-success: var(--success);
+	--color-background-success: var(--background-success);
+	--color-border-success: var(--border-success);
+
+	--animate-rippling: rippling 500ms ease-out;
+
+	@keyframes rippling {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			transform: scale(2);
+			opacity: 0;
+		}
+	}
+}
+
+body {
+	background: var(--background);
+	color: var(--primary);
+	font-family: var(--font-family);
+	width: min(100%, 1366px);
+	margin: 0 auto;
+}
+
+@layer utilities {
+	* {
+		-webkit-tap-highlight-color: transparent;
+		scrollbar-color: var(--scrollbar-color) transparent;
+		scrollbar-width: thin;
+	}
+}
