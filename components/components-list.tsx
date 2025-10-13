@@ -5,6 +5,7 @@ import FloatingDockExample from "@/components/examples/floating-dock"
 import InputExample from "@/components/examples/input"
 import ModalExample from "@/components/examples/modal"
 import MorphingDialogExample from "@/components/examples/morphing-dialog"
+import TabExample from "@/components/examples/tab"
 import ToastExample from "@/components/examples/toast"
 import { createElement } from "react"
 
@@ -17,7 +18,8 @@ export default function ComponentsList() {
 		{ name: "Modal", example: ModalExample, href: "/components/modal" },
 		// { name: "Navegation", example: MenuExample, href: "/components/navegation" },
 		{ name: "Toast", example: ToastExample, href: "/components/toast" },
-		{ name: "Inputs", example: InputExample, href: "/components/inputs" }
+		{ name: "Inputs", example: InputExample, href: "/components/inputs" },
+		{ name: "Tabs", example: TabExample, href: "/components/tab" }
 	] as const
 
 	return (

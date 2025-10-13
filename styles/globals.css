@@ -1,6 +1,24 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+	:root {
+		--shiki-foreground: #ffffff;
+		--shiki-token-constant: #a7a7a7;
+		--shiki-token-string: #a7a7a7;
+		--shiki-token-comment: #666666;
+		--shiki-token-keyword: #a7a7a7;
+		--shiki-token-parameter: #a7a7a7;
+		--shiki-token-function: #ffffff;
+		--shiki-token-string-expression: #a7a7a7;
+		--shiki-token-punctuation: #a7a7a7;
+		--shiki-token-link: #a7a7a7;
+		--shiki-token-number: #ffffff;
+		--shiki-token-property: #a7a7a7;
+	}
+}
 
 :root {
 	--background: oklch(0.985 0 0);
