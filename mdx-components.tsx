@@ -1,12 +1,6 @@
 import CodeBlock from "@/components/code-block"
 import { cn } from "@/lib/utils"
 import type { MDXComponents } from "mdx/types"
-// import {
-//   Tabs,
-//   TabsContent,
-//   TabsList,
-//   TabsTrigger,
-// } from './components/website/tabs';
 
 const generateId = (text: string) => {
 	return text
@@ -56,27 +50,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 			</h3>
 		),
 		Steps: ({ ...props }) => <div className="steps mb-12 ml-4 border-l pl-8 [counter-reset:step]" {...props} />,
-		// Tabs: ({ className, ...props }: React.ComponentProps<typeof Tabs>) => (
-		//   <Tabs className={cn('relative mt-6 w-full', className)} {...props} />
-		// ),
-		// TabsList: ({
-		//   className,
-		//   ...props
-		// }: React.ComponentProps<typeof TabsList>) => (
-		//   <TabsList className={cn(className)} {...props} />
-		// ),
-		// TabsTrigger: ({
-		//   className,
-		//   ...props
-		// }: React.ComponentProps<typeof TabsTrigger>) => (
-		//   <TabsTrigger className={cn(className)} {...props} />
-		// ),
-		// TabsContent: ({
-		//   className,
-		//   ...props
-		// }: React.ComponentProps<typeof TabsContent>) => (
-		//   <TabsContent className={cn(className)} {...props} />
-		// ),
 		table: ({ className, ...props }: React.ComponentProps<"table">) => (
 			<div className="not-prose relative w-full table-auto overflow-auto rounded-lg border border-zinc-200 text-sm dark:border-zinc-800">
 				<table className={cn("w-full", className)} {...props} />

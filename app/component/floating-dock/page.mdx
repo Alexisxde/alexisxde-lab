@@ -1,0 +1,39 @@
+export const metadata = {
+	title: "Floating Dock - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import FloatingDock from "@/components/examples/floating-dock"
+
+# Floating Dock
+
+Se transforma visualmente un trigger del contenido, utilizando animaciones de layout fluidas. Este se "morfosea" entre estados, ofreciendo una experiencia visual más integrada y elegante.
+
+## Floating Dock
+
+<ComponentCodePreview component={<FloatingDock />} filePath="components/examples/floating-dock.tsx" />
+
+## Component API
+
+### FloatingDock
+
+| Prop        | Type              | Default     | Description                                       |
+| :---------- | :---------------- | :---------- | :------------------------------------------------ |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del `Floating Dock`.                 |
+| `tooltip`   | `boolean`         | `true`      | Muestra un tooltip en cada boton de las opciones. |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor.        |
+
+### FloatingDockTrigger
+
+| Prop        | Type              | Default     | Description                                         |
+| :---------- | :---------------- | :---------- | :-------------------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del elemento desencadenante.           |
+| `asChild`   | `boolean`         | `false`     | Si se deben combinar las props en el elemento hijo. |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor.          |
+
+### FloatingDockContent
+
+| Prop        | Type              | Default     | Description                                     |
+| :---------- | :---------------- | :---------- | :---------------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | Contenido que se muestra dentro de cada opción. |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor.      |

@@ -42,9 +42,10 @@ function useDock() {
 
 export interface DockAnchorProps extends Option {
 	href: string
+	className?: string
 }
 
-export function DockAnchor({ title, icon, href }: DockAnchorProps) {
+export function DockAnchor({ title, icon, href, className }: DockAnchorProps) {
 	const [isHovered, setIsHovered] = useState(false)
 	const ref = useRef<HTMLDivElement | null>(null!)
 	const { mouseX } = useDock()
@@ -73,7 +74,7 @@ export function DockAnchor({ title, icon, href }: DockAnchorProps) {
 				style={{ width, height }}
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
-				className="bg-secondary relative flex aspect-square items-center justify-center rounded-full">
+				className={cn("bg-secondary relative flex aspect-square items-center justify-center rounded-full", className)}>
 				<AnimatePresence>
 					{isHovered && (
 						<motion.div

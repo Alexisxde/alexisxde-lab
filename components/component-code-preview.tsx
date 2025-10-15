@@ -1,8 +1,8 @@
-// import CodePreview from "@/components/code-preview"
-// import CodeRenderer from "@/components/code-renderer"
+import CodePreview from "@/components/code-preview"
+import CodeRenderer from "@/components/code-renderer"
 import ComponentPreview from "@/components/component-preview"
 import { extractCodeFromFilePath } from "@/lib/code"
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs"
+import { Tab, TabContent, TabHeader, TabOption } from "./ui/tab"
 
 type ComponentCodePreview = {
 	component: React.ReactElement
@@ -21,20 +21,20 @@ export default function ComponentCodePreview({
 
 	return (
 		<div className="not-prose relative z-0 flex items-center justify-between pb-4">
-			{/* <Tabs defaultValue="preview" className="relative mr-auto w-full"> */}
-			{/* <TabsList className=""> */}
-			{/* <TabsTrigger value="preview">Preview</TabsTrigger> */}
-			{/* <TabsTrigger value="code">Code</TabsTrigger> */}
-			{/* </TabsList> */}
-			{/* <TabsContent value="preview" className="border border-zinc-200 dark:border-zinc-800"> */}
-			<ComponentPreview component={component} hasReTrigger={hasReTrigger} className={classNameComponentContainer} />
-			{/* </TabsContent> */}
-			{/* <TabsContent value="code" className="border border-zinc-200 dark:border-zinc-800"> */}
-			{/* <CodePreview code={fileContent}>
-				<CodeRenderer code={fileContent} lang="tsx" />
-			</CodePreview> */}
-			{/* </TabsContent> */}
-			{/* </Tabs> */}
+			<Tab defaultValue="preview">
+				<TabHeader>
+					<TabOption value="preview">Preview</TabOption>
+					<TabOption value="code">Code</TabOption>
+				</TabHeader>
+				<TabContent value="preview" className="border border-zinc-200 dark:border-zinc-800">
+					<ComponentPreview component={component} hasReTrigger={hasReTrigger} className={classNameComponentContainer} />
+				</TabContent>
+				<TabContent value="code" className="border border-zinc-200 dark:border-zinc-800">
+					<CodePreview code={fileContent}>
+						<CodeRenderer code={fileContent} lang="tsx" />
+					</CodePreview>
+				</TabContent>
+			</Tab>
 		</div>
 	)
 }

@@ -1,5 +1,6 @@
 import "@/styles/globals.css"
 import type { Metadata } from "next"
+import { ThemeProvider } from "next-themes"
 import { Poppins } from "next/font/google"
 
 const poppins = Poppins({
@@ -19,8 +20,10 @@ interface Props {
 
 export default function RootLayout({ children }: Readonly<Props>) {
 	return (
-		<html lang="es" className="dark">
-			<body className={`${poppins.className} antialiased`}>{children}</body>
+		<html lang="es" className="dark" style={{ colorScheme: "dark" }}>
+			<body className={`${poppins.className} antialiased`}>
+				<ThemeProvider attribute="class">{children}</ThemeProvider>
+			</body>
 		</html>
 	)
 }

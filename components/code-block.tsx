@@ -16,7 +16,7 @@ export default function CodeBlock({ filePath, code = "", lang = "tsx", className
 	return (
 		<div
 			className={cn(
-				"not-prose max-h-[650px] overflow-auto overflow-x-auto overflow-y-hidden rounded-md text-sm dark:border dark:border-zinc-800",
+				"not-prose dark:border-border max-h-[650px] overflow-auto overflow-x-auto overflow-y-hidden rounded-md text-sm dark:border",
 				className
 			)}>
 			<CodePreview code={fileContent}>

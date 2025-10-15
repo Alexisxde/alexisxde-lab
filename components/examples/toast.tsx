@@ -15,22 +15,9 @@ function Toast() {
 
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-4">
-			<Button size="sm" variant="ghost" onClick={() => toast.default({ text: "Default" })}>
-				Default
-			</Button>
 			<Button size="sm" onClick={() => toast.success({ text: "Success." })}>
 				Success
 			</Button>
-			{/* <Button
-				size="sm"
-				onClick={() => toast.error({ text: "Error." })}>
-				Error
-			</Button>
-			<Button
-				size="sm"
-				onClick={() => toast.warning({ text: "Warning." })}>
-				Warning
-			</Button> */}
 		</div>
 	)
 }

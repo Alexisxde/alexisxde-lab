@@ -17,7 +17,7 @@ export default function Home() {
 				<section className="relative z-10 px-4 sm:px-6">
 					<div className="mx-auto max-w-7xl px-2 py-16 lg:py-24">
 						<h1 className="text-primary text-2xl font-semibold tracking-tight text-pretty sm:text-[length:clamp(2rem,3.75vw,3rem)]/tight">
-							Espacio creativo para experimentos de UI, exploraciones de componentes y diseño de interacción.
+							Aquí subo mis experimentos con React: Componentes bonitos que nacen del código y la curiosidad.
 						</h1>
 					</div>
 				</section>

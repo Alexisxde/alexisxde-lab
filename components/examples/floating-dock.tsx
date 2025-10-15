@@ -1,4 +1,3 @@
-"use client"
 import { FloatingDock, FloatingDockAnchor, FloatingDockContent, FloatingDockTrigger } from "@/components/ui/floating-dock"
 import { FacebookIcon, GithubIcon, TwitterIcon } from "lucide-react"
 

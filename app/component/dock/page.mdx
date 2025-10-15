@@ -1,0 +1,41 @@
+export const metadata = {
+	title: "Dock - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import Dock from "@/components/examples/dock"
+
+# Dock
+
+Responde al cursor con animaciones suaves de escala, amplificando los íconos al pasar el mouse. Esta interacción dinámica refuerza la jerarquía visual y aporta una sensación táctil y envolvente a la navegación.
+
+## Dock
+
+<ComponentCodePreview component={<Dock />} filePath="components/examples/dock.tsx" />
+
+## Component API
+
+### Dock
+
+| Prop        | Type              | Default     | Description                                |
+| :---------- | :---------------- | :---------- | :----------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del `Dock`.                   |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor. |
+
+### DockAnchor
+
+| Prop        | Type              | Default     | Description                                         |
+| :---------- | :---------------- | :---------- | :-------------------------------------------------- |
+| `icon`      | `React.ReactNode` | Requerido   | El icono del elemento.                              |
+| `title`     | `string`          | `undefined` | Si se deben combinar las props en el elemento hijo. |
+| `href`      | `string`          | `undefined` | URL a donde va dirigir a hacer click.               |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor.          |
+
+### DockButton
+
+| Prop        | Type              | Default     | Description                                         |
+| :---------- | :---------------- | :---------- | :-------------------------------------------------- |
+| `icon`      | `React.ReactNode` | Requerido   | El icono del elemento.                              |
+| `title`     | `string`          | `undefined` | Si se deben combinar las props en el elemento hijo. |
+| `onClick`   | `() => unknown`   | `undefined` | function que se ejecutará a hacer click.            |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor.          |

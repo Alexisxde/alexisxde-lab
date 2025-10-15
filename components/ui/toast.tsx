@@ -45,7 +45,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 		warning: createToast("warning")
 	}
 
-	const contextValue = useMemo(() => ({ list, toast }), [list])
+	const contextValue = useMemo(() => ({ list, toast }), [list, toast])
 
 	return (
 		<ToastContext.Provider value={contextValue}>

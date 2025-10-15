@@ -85,6 +85,7 @@
 	--color-input: var(--input);
 	--color-icon-primary: var(--icon-primary);
 	--color-icon-secondary: var(--icon-secondary);
+	--breakpoint-8xl: 1366px;
 
 	--color-success: var(--success);
 	--color-background-success: var(--background-success);

@@ -1,21 +1,27 @@
 "use client"
 import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useId, useState } from "react"
 
 type TabContextType = {
+	tabId: string
 	tab: string | number | null
 	setTab: React.Dispatch<React.SetStateAction<string | number | null>>
 }
 
 const TabContext = createContext<TabContextType | null>(null!)
 
-export type TabProps = { children: React.ReactNode; defaultTab: string | number | null }
+export type TabProps = { children: React.ReactNode; defaultValue: string | number | null; className?: string }
 
-export function Tab({ children, defaultTab }: TabProps) {
-	const [tab, setTab] = useState<string | number | null>(defaultTab ?? null)
+export function Tab({ children, defaultValue, className }: TabProps) {
+	const tabId = useId()
+	const [tab, setTab] = useState<string | number | null>(defaultValue ?? null)
 
-	return <TabContext.Provider value={{ tab, setTab }}>{children}</TabContext.Provider>
+	return (
+		<TabContext.Provider value={{ tabId, tab, setTab }}>
+			<div className={cn("flex w-full flex-col", className)}>{children}</div>
+		</TabContext.Provider>
+	)
 }
 
 function useTab() {
@@ -38,32 +44,26 @@ export function TabHeader({ children, className }: TabHeaderProps) {
 	)
 }
 
-export type TabContainerProps = { children: React.ReactNode; className?: string }
+export type TabOptionProps = { children: React.ReactNode; value: string | number; className?: string }
 
-export function TabContainer({ children, className }: TabContainerProps) {
-	return <div className={cn("flex w-full flex-col", className)}>{children}</div>
-}
-
-export type TabOptionProps = { children: React.ReactNode; tab: string | number; className?: string }
-
-export function TabOption({ tab: tabName, children, className }: TabOptionProps) {
-	const { tab, setTab } = useTab()
+export function TabOption({ value, children, className }: TabOptionProps) {
+	const { tabId, tab, setTab } = useTab()
 
 	const handleClick = () => {
-		setTab(tabName)
+		setTab(value)
 	}
 
 	return (
 		<button
 			className={cn(
-				"relative flex h-8 w-full cursor-pointer items-center justify-center gap-1 rounded-md px-4 py-2 text-xs text-nowrap transition-colors duration-200 ease-in-out",
+				"text-primary relative flex h-8 w-full cursor-pointer items-center justify-center gap-1 rounded-md px-4 py-2 text-xs text-nowrap transition-colors duration-200 ease-in-out",
 				className
 			)}
 			onClick={handleClick}>
 			<div className="z-1 flex flex-1 items-center justify-center">{children}</div>
-			{tab === tabName && (
+			{tab === value && (
 				<motion.span
-					layoutId="pill-tab"
+					layoutId={`pill-tab-${tabId}`}
 					transition={{ type: "spring", duration: 0.3 }}
 					className="bg-muted absolute inset-0 rounded-md"
 				/>
@@ -72,14 +72,14 @@ export function TabOption({ tab: tabName, children, className }: TabOptionProps)
 	)
 }
 
-export type TabContentProps = { children: React.ReactNode; tab: string | number; className?: string }
+export type TabContentProps = { children: React.ReactNode; value: string | number; className?: string }
 
-export function TabContent({ tab: tabName, children, className }: TabContentProps) {
+export function TabContent({ value, children, className }: TabContentProps) {
 	const { tab } = useTab()
 
 	return (
 		<>
-			{tab === tabName && (
+			{tab === value && (
 				<div className={cn("bg-card border-border flex flex-col gap-2 rounded-md border p-4", className)}>{children}</div>
 			)}
 		</>
