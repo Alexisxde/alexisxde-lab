@@ -7,7 +7,7 @@ import Tab from "@/components/examples/tab"
 
 # Tab
 
-Responde al cursor con animaciones suaves de escala, amplificando los íconos al pasar el mouse. Esta interacción dinámica refuerza la jerarquía visual y aporta una sensación táctil y envolvente a la navegación.
+El bloque indicador se desliza al tab activo al hacer clic, reforzando la jerarquía visual y la respuesta contextual.
 
 ## Tab
 
@@ -17,25 +17,31 @@ Responde al cursor con animaciones suaves de escala, amplificando los íconos al
 
 ### Tab
 
+| Prop           | Type               | Default     | Description                                |
+| :------------- | :----------------- | :---------- | :----------------------------------------- |
+| `children`     | `React.ReactNode`  | Requerido   | El contenido del `Tab`.                    |
+| `defaultValue` | `string \| number` | Requerido   | Valor por defecto del inicio del `Tab`.    |
+| `className`    | `string`           | `undefined` | Clases CSS adicionales para el contenedor. |
+
+### TabHeader
+
 | Prop        | Type              | Default     | Description                                |
 | :---------- | :---------------- | :---------- | :----------------------------------------- |
-| `children`  | `React.ReactNode` | Requerido   | El contenido del `Tab`.                   |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del `TabHeader`.              |
 | `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor. |
 
-### TabAnchor
+### TabOption
 
-| Prop        | Type              | Default     | Description                                         |
-| :---------- | :---------------- | :---------- | :-------------------------------------------------- |
-| `icon`      | `React.ReactNode` | Requerido   | El icono del elemento.                              |
-| `title`     | `string`          | `undefined` | Si se deben combinar las props en el elemento hijo. |
-| `href`      | `string`          | `undefined` | URL a donde va dirigir a hacer click.               |
-| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor.          |
+| Prop        | Type               | Default     | Description                                |
+| :---------- | :----------------- | :---------- | :----------------------------------------- |
+| `children`  | `React.ReactNode`  | Requerido   | El contenido del `TabOption`.              |
+| `value`     | `string \| number` | `undefined` | Valor para cada `TabOption`.               |
+| `className` | `string`           | `undefined` | Clases CSS adicionales para el contenedor. |
 
-### TabButton
+### TabContent
 
-| Prop        | Type              | Default     | Description                                         |
-| :---------- | :---------------- | :---------- | :-------------------------------------------------- |
-| `icon`      | `React.ReactNode` | Requerido   | El icono del elemento.                              |
-| `title`     | `string`          | `undefined` | Si se deben combinar las props en el elemento hijo. |
-| `onClick`   | `() => unknown`   | `undefined` | function que se ejecutará a hacer click.            |
-| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor.          |
+| Prop        | Type               | Default     | Description                                |
+| :---------- | :----------------- | :---------- | :----------------------------------------- |
+| `children`  | `React.ReactNode`  | Requerido   | El contenido del `TabContent`.             |
+| `value`     | `string \| number` | `undefined` | Valor para cada `TabContent`.              |
+| `className` | `string`           | `undefined` | Clases CSS adicionales para el contenedor. |

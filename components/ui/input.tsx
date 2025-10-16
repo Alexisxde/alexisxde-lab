@@ -9,12 +9,23 @@ interface InputProps extends React.ComponentPropsWithRef<"input"> {
 	labelClassName?: string
 }
 
-export default function Input({ icon, label, labelClassName, optional = false, className, type, message, ...props }: InputProps) {
+export default function Input({
+	icon,
+	label,
+	labelClassName,
+	optional = false,
+	className,
+	type,
+	message,
+	disabled,
+	...props
+}: InputProps) {
 	return (
 		<>
 			<label
+				aria-disabled={disabled}
 				aria-invalid={!!message}
-				className="border-input aria-invalid:border-destructive relative mb-0 flex w-full items-center justify-between rounded-lg border px-3 py-1.5">
+				className="group border-input aria-invalid:border-destructive relative mb-0 flex w-full items-center justify-between rounded-lg border px-3 py-1.5 aria-disabled:cursor-not-allowed aria-disabled:opacity-50">
 				<label
 					className={cn(
 						"bg-card text-gray pointer-events-none absolute -top-2 left-2.5 h-fit px-1.5 text-[10px]",
@@ -24,9 +35,10 @@ export default function Input({ icon, label, labelClassName, optional = false, c
 				</label>
 				{icon}
 				<input
+					disabled={disabled}
 					type={type}
 					className={cn(
-						"text-primary placeholder:text-muted-foreground size-full px-1 py-1.5 pl-1 text-base focus:outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+						"text-primary placeholder:text-muted-foreground size-full px-1 py-1.5 pl-1 text-base focus:outline-none md:text-sm",
 						"file:text-foreground file:inline-flex file:border-0 file:bg-transparent file:text-sm file:font-medium",
 						{ "pl-2": !!icon },
 						className

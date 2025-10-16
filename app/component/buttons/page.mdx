@@ -1,0 +1,46 @@
+export const metadata = {
+	title: "Buttons - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import ButtonDefault from "./button-default"
+import ButtonDestructive from "./button-destructive"
+import ButtonGhost from "./button-ghost"
+import ButtonSecondary from "./button-secondary"
+import ButtonsSizes from "./buttons-sizes"
+
+# Buttons
+
+Botones con un efecto repplie.
+
+## Button Default
+
+<ComponentCodePreview component={<ButtonDefault />} filePath="app/component/buttons/button-default.tsx" />
+
+## Button Secondary
+
+<ComponentCodePreview component={<ButtonSecondary />} filePath="app/component/buttons/button-secondary.tsx" />
+
+## Button Ghost
+
+<ComponentCodePreview component={<ButtonGhost />} filePath="app/component/buttons/button-ghost.tsx" />
+
+## Button Destructive
+
+<ComponentCodePreview component={<ButtonDestructive />} filePath="app/component/buttons/button-destructive.tsx" />
+
+## Buttons Sizes
+
+<ComponentCodePreview component={<ButtonsSizes />} filePath="app/component/buttons/buttons-sizes.tsx" />
+
+## Component API
+
+### Input
+
+| Prop        | Type                                                   | Default     | Description                                |
+| :---------- | :----------------------------------------------------- | :---------- | :----------------------------------------- |
+| `children`  | `React.ReactNode`                                      | `undefined` | Contenido del botón.                       |
+| `variant`   | `primary \| secondary \| ghost \| destructive \| icon` | `primary`   | Variante del botón.                        |
+| `className` | `string`                                               | `undefined` | Clases CSS adicionales para el contenedor. |
+| `size`      | `sm \| md \| lg \| icon`                               | `sm`        | Tamaño del botón.                          |
+| `disabled`  | `boolean`                                              | `false`     | Deshabilitar el botón.                     |

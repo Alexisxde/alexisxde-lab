@@ -1,0 +1,42 @@
+export const metadata = {
+	title: "Inputs - Alexisxde"
+}
+
+import InputDateTime from "@/app/component/inputs/input-datetime"
+import InputDisabled from "@/app/component/inputs/input-disabled"
+import InputImage from "@/app/component/inputs/input-image"
+import InputText from "@/app/component/inputs/input-text"
+import ComponentCodePreview from "@/components/component-code-preview"
+
+# Inputs
+
+Compatibles con `React Hook Form`.
+
+## Input Basic
+
+<ComponentCodePreview component={<InputText />} filePath="app/component/inputs/input-text.tsx" />
+
+## Input DateTime
+
+<ComponentCodePreview component={<InputDateTime />} filePath="app/component/inputs/input-datetime.tsx" />
+
+## Input File
+
+<ComponentCodePreview component={<InputImage />} filePath="app/component/inputs/input-image.tsx" />
+
+## Input Disabled
+
+<ComponentCodePreview component={<InputDisabled />} filePath="app/component/inputs/input-image.tsx" />
+
+## Component API
+
+### Input
+
+| Prop             | Type      | Default     | Description                                 |
+| :--------------- | :-------- | :---------- | :------------------------------------------ |
+| `type`           | `string`  | `text`      | El tipo del `Input`.                        |
+| `className`      | `string`  | `undefined` | Clases CSS adicionales para el contenedor.  |
+| `label`          | `string`  | `undefined` | label que aparecerá en el input (optional). |
+| `optional`       | `boolean` | `true`      | Activa la advertencia roja si es requerida. |
+| `disabled`       | `boolean` | `false`     | Desactiva el input.                         |
+| `labelClassName` | `string`  | `undefined` | Clases CSS adicionales para el label.       |

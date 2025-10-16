@@ -11,7 +11,7 @@ type TabContextType = {
 
 const TabContext = createContext<TabContextType | null>(null!)
 
-export type TabProps = { children: React.ReactNode; defaultValue: string | number | null; className?: string }
+export type TabProps = { children: React.ReactNode; defaultValue: string | number; className?: string }
 
 export function Tab({ children, defaultValue, className }: TabProps) {
 	const tabId = useId()
