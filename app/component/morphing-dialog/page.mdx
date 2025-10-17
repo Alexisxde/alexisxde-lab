@@ -1,0 +1,82 @@
+export const metadata = {
+	title: "Morphing Dialog - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import MorphingDialog from "@/components/examples/morphing-dialog"
+
+# Morphing Dialog
+
+asd
+
+## Morphing Dialog
+
+<ComponentCodePreview component={<MorphingDialog />} filePath="components/examples/morphing-dialog.tsx" />
+
+## Component API
+
+### MorphingDialog
+
+| Prop         | Type                                | Default                                           | Description                           |
+| :----------- | :---------------------------------- | :------------------------------------------------ | :------------------------------------ |
+| `children`   | `React.ReactNode`                   | Requerido                                         | El contenido del `MorphingDialog`.    |
+| `transition` | `Transition`                        | `{ type: "spring", stiffness: 200, damping: 24 }` | Transiciones hechas con motion/react. |
+| `isOpen`     | `boolean`                           | Requerido                                         | .                                     |
+| `setIsOpen`  | `Dispatch<SetStateAction<boolean>>` | Requerido                                         | .                                     |
+
+### MorphingDialogTrigger
+
+| Prop        | Type              | Default     | Description                               |
+| :---------- | :---------------- | :---------- | :---------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogTrigger`. |
+| `className` | `string`          | `undefined` | .                                         |
+| `asChild`   | `boolean`         | `false`     | .                                         |
+
+### MorphingDialogContent
+
+| Prop        | Type              | Default     | Description                               |
+| :---------- | :---------------- | :---------- | :---------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogContent`. |
+| `className` | `string`          | `undefined` | .                                         |
+| `style`     | `CSSProperties`   | `undefined` | .                                         |
+
+### MorphingDialogContainer
+
+| Prop        | Type              | Default     | Description                                 |
+| :---------- | :---------------- | :---------- | :------------------------------------------ |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogContainer`. |
+| `className` | `string`          | `undefined` | .                                           |
+| `overlay`   | `boolean`         | `true`      | .                                           |
+
+### MorphingDialogTitle
+
+| Prop        | Type              | Default     | Description                             |
+| :---------- | :---------------- | :---------- | :-------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogTitle`. |
+| `className` | `string`          | `undefined` | .                                       |
+| `style`     | `CSSProperties`   | `undefined` | .                                       |
+
+### MorphingDialogSubTitle
+
+| Prop        | Type              | Default     | Description                                |
+| :---------- | :---------------- | :---------- | :----------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogSubtitle`. |
+| `className` | `string`          | `undefined` | .                                          |
+| `style`     | `CSSProperties`   | `undefined` | .                                          |
+
+### MorphingDialogDescription
+
+| Prop        | Type                                                    | Default     | Description                                   |
+| :---------- | :------------------------------------------------------ | :---------- | :-------------------------------------------- |
+| `children`  | `React.ReactNode`                                       | Requerido   | El contenido del `MorphingDialogDescription`. |
+| `className` | `string`                                                | `undefined` | .                                             |
+| `variants`  | `{ initial: Variant; animate: Variant; exit: Variant }` | `undefined` | .                                             |
+
+### MorphingDialogImage
+
+| Prop        | Type            | Default     | Description |
+| :---------- | :-------------- | :---------- | :---------- |
+| `src`       | `string`        | Requerido   | .           |
+| `alt`       | `string`        | Requerido   | .           |
+| `className` | `string`        | `undefined` | .           |
+| `style`     | `CSSProperties` | `undefined` | .           |

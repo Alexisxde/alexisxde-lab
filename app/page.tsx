@@ -1,6 +1,5 @@
 import ComponentsList from "@/components/components-list"
 import Header from "@/components/header"
-import { TransitionPanelCard } from "@/components/ui/tab-transition"
 
 export default function Home() {
 	return (
@@ -26,7 +25,6 @@ export default function Home() {
 					<ComponentsList />
 				</main>
 			</div>
-			<TransitionPanelCard />
 			{/* <Footer /> */}
 		</section>
 	)

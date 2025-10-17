@@ -19,7 +19,7 @@ export default function ModalExample() {
 	return (
 		<>
 			<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-				<ModalTrigger size={"default"}>Abrir Modal</ModalTrigger>
+				<ModalTrigger size="md">Abrir Modal</ModalTrigger>
 				<ModalContainer>
 					<ModalHeader>
 						<h2 className="text-xl font-medium">Únete a la lista de espera</h2>

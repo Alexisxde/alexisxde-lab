@@ -26,10 +26,10 @@ export default function ComponentCodePreview({
 					<TabOption value="preview">Preview</TabOption>
 					<TabOption value="code">Code</TabOption>
 				</TabHeader>
-				<TabContent value="preview" className="border border-zinc-200 dark:border-zinc-800">
+				<TabContent value="preview" className="border-border border">
 					<ComponentPreview component={component} hasReTrigger={hasReTrigger} className={classNameComponentContainer} />
 				</TabContent>
-				<TabContent value="code" className="border border-zinc-200 dark:border-zinc-800">
+				<TabContent value="code" className="border-border border">
 					<CodePreview code={fileContent}>
 						<CodeRenderer code={fileContent} lang="tsx" />
 					</CodePreview>

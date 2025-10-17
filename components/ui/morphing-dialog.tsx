@@ -260,22 +260,16 @@ export function MorphingDialogSubtitle({ children, className, style }: MorphingD
 export type MorphingDialogDescriptionProps = {
 	children: React.ReactNode
 	className?: string
-	disableLayoutAnimation?: boolean
 	variants?: { initial: Variant; animate: Variant; exit: Variant }
 }
 
-export function MorphingDialogDescription({
-	children,
-	className,
-	variants,
-	disableLayoutAnimation
-}: MorphingDialogDescriptionProps) {
+export function MorphingDialogDescription({ children, className, variants }: MorphingDialogDescriptionProps) {
 	const { uniqueId } = useMorphingDialog()
 
 	return (
 		<motion.div
 			key={`dialog-description-${uniqueId}`}
-			layoutId={disableLayoutAnimation ? undefined : `dialog-description-content-${uniqueId}`}
+			layoutId={`dialog-description-content-${uniqueId}`}
 			variants={variants}
 			className={cn("", className)}
 			initial="initial"
