@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { ClassValue } from "clsx"
 import { X } from "lucide-react"
 import { AnimatePresence, motion, MotionConfig, type Transition, type Variant } from "motion/react"
-import React, { isValidElement, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react"
+import React, { isValidElement, memo, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
 export type MorphingDialogContextType = {
@@ -33,7 +33,7 @@ export type MorphingDialogProviderProps = {
 function MorphingDialogProvider({ children, transition, isOpen, setIsOpen }: MorphingDialogProviderProps) {
 	const uniqueId = useId()
 	const triggerRef = useRef<HTMLButtonElement>(null!)
-	const contextValue = useMemo(() => ({ isOpen, setIsOpen, uniqueId, triggerRef }), [isOpen, uniqueId])
+	const contextValue = useMemo(() => ({ isOpen, setIsOpen, uniqueId, triggerRef }), [isOpen, setIsOpen, uniqueId])
 
 	return (
 		<MorphingDialogContext.Provider value={contextValue}>
@@ -57,24 +57,22 @@ export function MorphingDialog({
 	)
 }
 
-export type MorphingDialogTriggerProps = {
-	asChild?: boolean
-	children: React.ReactNode
-	className?: string
-} & React.ComponentProps<typeof motion.button>
+export type MorphingDialogTriggerProps = React.ComponentProps<typeof motion.button> & { asChild?: boolean }
 
-export function MorphingDialogTrigger({ children, className, asChild = false, ...props }: MorphingDialogTriggerProps) {
+export const MorphingDialogTrigger = memo(({ children, className, asChild = false, ...props }: MorphingDialogTriggerProps) => {
 	const { setIsOpen, isOpen, uniqueId, triggerRef } = useMorphingDialog()
 
 	const handleKeyDown = useCallback(
 		(event: React.KeyboardEvent) => {
 			if (event.key === "Enter" || event.key === " ") {
 				event.preventDefault()
-				setIsOpen(!isOpen)
+				setIsOpen(prev => !prev)
 			}
 		},
-		[isOpen, setIsOpen]
+		[setIsOpen]
 	)
+
+	const handleOpen = useCallback(() => setIsOpen(true), [setIsOpen])
 
 	if (asChild && isValidElement(children)) {
 		const MotionComponent = motion.create(children.type as React.ForwardRefExoticComponent<any>)
@@ -83,7 +81,7 @@ export function MorphingDialogTrigger({ children, className, asChild = false, ..
 		return (
 			<MotionComponent
 				{...childProps}
-				onClick={() => setIsOpen(true)}
+				onClick={handleOpen}
 				ref={triggerRef}
 				layoutId={`dialog-${uniqueId}`}
 				className={cn("focus:outline-none", childProps.className)}
@@ -97,7 +95,7 @@ export function MorphingDialogTrigger({ children, className, asChild = false, ..
 			key={uniqueId}
 			layoutId={`dialog-${uniqueId}`}
 			layout="position"
-			onClick={() => setIsOpen(true)}
+			onClick={handleOpen}
 			onKeyDown={handleKeyDown}>
 			<motion.button
 				{...props}
@@ -109,7 +107,9 @@ export function MorphingDialogTrigger({ children, className, asChild = false, ..
 			</motion.button>
 		</motion.div>
 	)
-}
+})
+
+MorphingDialogTrigger.displayName = "MorphingDialogTrigger"
 
 export type MorphingDialogContentProps = {
 	children: React.ReactNode
@@ -214,12 +214,12 @@ export function MorphingDialogContainer({ children, className, overlay = true }:
 
 	return createPortal(
 		<AnimatePresence initial={false} mode="sync">
-			{isOpen && (
+			{isOpen ? (
 				<>
-					{overlay && <Overlay />}
+					{overlay ? <Overlay /> : null}
 					<div className={cn("fixed inset-0 z-50 flex items-center justify-center", className)}>{children}</div>
 				</>
-			)}
+			) : null}
 		</AnimatePresence>,
 		document.body
 	)
@@ -296,7 +296,7 @@ export function MorphingDialogImage({ src, alt, className, style }: MorphingDial
 
 export type MorphingDialogCloseProps = {} & ButtonProps
 
-export function MorphingDialogClose({ children, className, ...props }: MorphingDialogCloseProps) {
+export const MorphingDialogClose = memo(({ children, className, ...props }: MorphingDialogCloseProps) => {
 	const { setIsOpen, uniqueId } = useMorphingDialog()
 
 	const handleClose = useCallback(() => {
@@ -314,4 +314,17 @@ export function MorphingDialogClose({ children, className, ...props }: MorphingD
 			{children ?? <X />}
 		</Button>
 	)
-}
+})
+
+MorphingDialogClose.displayName = "MorphingDialogClose"
+
+MorphingDialog.Trigger = MorphingDialogTrigger
+MorphingDialog.Container = MorphingDialogContainer
+MorphingDialog.Content = MorphingDialogContent
+MorphingDialog.Title = MorphingDialogTitle
+MorphingDialog.Subtitle = MorphingDialogSubtitle
+MorphingDialog.Description = MorphingDialogDescription
+MorphingDialog.Image = MorphingDialogImage
+MorphingDialog.Close = MorphingDialogClose
+
+export default MorphingDialog

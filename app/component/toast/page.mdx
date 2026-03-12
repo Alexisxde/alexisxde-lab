@@ -1,0 +1,42 @@
+export const metadata = {
+	title: "Toast - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import ToastDefault from "./toast-default"
+import ToastVariants from "./toast-variants"
+
+# Toast
+
+Un sistema de notificaciones ligero y animado para informar al usuario.
+
+## Toast Default
+
+<ComponentCodePreview component={<ToastDefault />} filePath="app/component/toast/toast-default.tsx" />
+
+## Toast Variants
+
+<ComponentCodePreview component={<ToastVariants />} filePath="app/component/toast/toast-variants.tsx" />
+
+## Component API
+
+### ToastManager
+
+El objeto `toast` devuelto por `useToast()` contiene las siguientes funciones: `default`, `success`, `warning`, `error`. Todas aceptan el mismo objeto de configuración.
+
+| Prop        | Type                       | Default     | Description                                |
+| :---------- | :------------------------- | :---------- | :----------------------------------------- |
+| `text`      | `string`                   | `undefined` | El mensaje principal de la notificación.    |
+| `icon`      | `React.ReactNode`          | `undefined` | Icono opcional que se muestra a la izquierda. |
+| `content`   | `string \| React.ReactNode` | `undefined` | Contenido adicional o decorativo a la derecha. |
+| `className` | `string`                   | `undefined` | Clases CSS adicionales para el contenedor. |
+
+### useToast Hook
+
+Hook para acceder a las funciones de notificación. Debe usarse dentro de un `ToastProvider`.
+
+```tsx
+const { toast } = useToast();
+
+toast.success({ text: "¡Éxito!" });
+```

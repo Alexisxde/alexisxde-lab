@@ -3,39 +3,30 @@ export const metadata = {
 }
 
 import ComponentCodePreview from "@/components/component-code-preview"
-import ButtonDefault from "./button-default"
-import ButtonDestructive from "./button-destructive"
-import ButtonGhost from "./button-ghost"
-import ButtonSecondary from "./button-secondary"
+import ButtonVariants from "./button-variants"
 import ButtonsSizes from "./buttons-sizes"
 
 # Buttons
 
 Botones con un efecto repplie.
 
-## Button Default
+## Button Variants
 
-<ComponentCodePreview component={<ButtonDefault />} filePath="app/component/buttons/button-default.tsx" />
-
-## Button Secondary
-
-<ComponentCodePreview component={<ButtonSecondary />} filePath="app/component/buttons/button-secondary.tsx" />
-
-## Button Ghost
-
-<ComponentCodePreview component={<ButtonGhost />} filePath="app/component/buttons/button-ghost.tsx" />
-
-## Button Destructive
-
-<ComponentCodePreview component={<ButtonDestructive />} filePath="app/component/buttons/button-destructive.tsx" />
+<ComponentCodePreview component={<ButtonVariants />} filePath="app/component/buttons/button-variants.tsx" />
 
 ## Buttons Sizes
 
 <ComponentCodePreview component={<ButtonsSizes />} filePath="app/component/buttons/buttons-sizes.tsx" />
 
+## Button asChild
+
+Utiliza la propiedad `asChild` para delegar el renderizado al componente hijo. Ideal para integrar con `Link` de Next.js manteniendo el efecto ripple y los estilos.
+
+<ComponentCodePreview component={<ButtonAsChild />} filePath="app/component/buttons/button-as-child.tsx" />
+
 ## Component API
 
-### Input
+### Button
 
 | Prop        | Type                                                   | Default     | Description                                |
 | :---------- | :----------------------------------------------------- | :---------- | :----------------------------------------- |
@@ -43,4 +34,7 @@ Botones con un efecto repplie.
 | `variant`   | `primary \| secondary \| ghost \| destructive \| icon` | `primary`   | Variante del botón.                        |
 | `className` | `string`                                               | `undefined` | Clases CSS adicionales para el contenedor. |
 | `size`      | `sm \| md \| lg \| icon`                               | `sm`        | Tamaño del botón.                          |
+| `asChild`   | `boolean`                                              | `false`     | Si es true, el botón se comportará como su hijo. |
+| `ripple`    | `boolean`                                              | `true`      | Activa o desactiva el efecto de onda (ripple).   |
 | `disabled`  | `boolean`                                              | `false`     | Deshabilitar el botón.                     |
+| `duration`  | `string`                                               | `600ms`     | Duración de la animación ripple.           |

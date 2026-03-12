@@ -1,0 +1,60 @@
+export const metadata = {
+	title: "Dropdown Menu - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import DropdownMenuControlled from "./dropdown-menu-controlled"
+import DropdownMenuDefault from "./dropdown-menu-default"
+
+# Dropdown Menu
+
+Un menú desplegable versátil y animado que muestra una lista de acciones o enlaces cuando se activa un disparador.
+
+> **Nota:** Todos los subcomponentes pueden usarse como `<DropdownMenuItem />` o mediante la notación de punto `<DropdownMenu.Item />`.
+
+## Dropdown Menu Default
+
+<ComponentCodePreview component={<DropdownMenuDefault />} filePath="app/component/dropdown-menu/dropdown-menu-default.tsx" />
+
+## Controlled
+
+Puedes controlar el estado del menú desde afuera utilizando las props `open` y `onOpenChange`.
+
+<ComponentCodePreview component={<DropdownMenuControlled />} filePath="app/component/dropdown-menu/dropdown-menu-controlled.tsx" />
+
+## Component API
+
+### DropdownMenu
+
+Componente raíz que envuelve el disparador y el contenido. Proporciona el contexto necesario para el estado de apertura.
+
+| Prop           | Type                         | Default     | Description                                         |
+| :------------- | :--------------------------- | :---------- | :-------------------------------------------------- |
+| `open`         | `boolean`                    | `undefined` | El estado de apertura controlado del menú.          |
+| `onOpenChange` | `(open: boolean) => void`    | `undefined` | Función que se ejecuta cuando el estado de apertura cambia. |
+
+
+### DropdownMenuTrigger
+
+El elemento que abre el menú al hacer clic.
+
+| Prop      | Type      | Default | Description                                           |
+| :-------- | :-------- | :------ | :---------------------------------------------------- |
+| `asChild` | `boolean` | `false` | Si es true, el trigger delegará el renderizado al hijo. |
+
+### DropdownMenuContent
+
+El contenedor que alberga los elementos del menú. Se posiciona automáticamente debajo del disparador.
+
+| Prop        | Type     | Default     | Description                                |
+| :---------- | :------- | :---------- | :----------------------------------------- |
+| `className` | `string` | `undefined` | Clases CSS adicionales para el contenedor. |
+
+### DropdownMenuItem
+
+Un elemento individual dentro del menú.
+
+| Prop      | Type      | Default | Description                                           |
+| :-------- | :-------- | :------ | :---------------------------------------------------- |
+| `asChild` | `boolean` | `false` | Si es true, el item delegará el renderizado al hijo. |
+| `onClick` | `function`| `undefined` | Función que se ejecuta al hacer clic en el item.      |

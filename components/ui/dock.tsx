@@ -1,7 +1,7 @@
 "use client"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion, type MotionValue, useMotionValue, useSpring, useTransform } from "motion/react"
-import { createContext, useContext, useRef, useState } from "react"
+import React, { createContext, memo, useCallback, useContext, useMemo, useRef, useState } from "react"
 
 export type Option = { title: string; icon: React.ReactNode }
 
@@ -21,12 +21,16 @@ export interface DockProps {
 
 export function Dock({ children, className }: DockProps) {
 	const mouseX = useMotionValue(Infinity)
+	const contextValue = useMemo(() => ({ mouseX }), [mouseX])
+
+	const handleMouseMove = useCallback((e: React.MouseEvent) => mouseX.set(e.pageX), [mouseX])
+	const handleMouseLeave = useCallback(() => mouseX.set(Infinity), [mouseX])
 
 	return (
-		<DockContext.Provider value={{ mouseX }}>
+		<DockContext.Provider value={contextValue}>
 			<motion.div
-				onMouseMove={e => mouseX.set(e.pageX)}
-				onMouseLeave={() => mouseX.set(Infinity)}
+				onMouseMove={handleMouseMove}
+				onMouseLeave={handleMouseLeave}
 				className={cn("bg-card border-border mx-auto flex h-16 items-end gap-4 rounded-2xl border px-4 pb-3", className)}>
 				{children}
 			</motion.div>
@@ -45,7 +49,7 @@ export interface DockAnchorProps extends Option {
 	className?: string
 }
 
-export function DockAnchor({ title, icon, href, className }: DockAnchorProps) {
+export const DockAnchor = memo(({ title, icon, href, className }: DockAnchorProps) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const ref = useRef<HTMLDivElement | null>(null!)
 	const { mouseX } = useDock()
@@ -67,16 +71,19 @@ export function DockAnchor({ title, icon, href, className }: DockAnchorProps) {
 	const widthIcon = useSpring(widthTransformIcon, TRANSITION)
 	const heightIcon = useSpring(heightTransformIcon, TRANSITION)
 
+	const handleMouseEnter = useCallback(() => setIsHovered(true), [])
+	const handleMouseLeave = useCallback(() => setIsHovered(false), [])
+
 	return (
 		<a href={href}>
 			<motion.div
 				ref={ref}
 				style={{ width, height }}
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
 				className={cn("bg-secondary relative flex aspect-square items-center justify-center rounded-full", className)}>
 				<AnimatePresence>
-					{isHovered && (
+					{isHovered ? (
 						<motion.div
 							initial={{ opacity: 0, y: 10, x: "-50%" }}
 							animate={{ opacity: 1, y: 0, x: "-50%" }}
@@ -84,7 +91,7 @@ export function DockAnchor({ title, icon, href, className }: DockAnchorProps) {
 							className="bg-secondary text-primary absolute -top-7 left-1/2 w-fit rounded-md px-2 py-0.5 text-xs whitespace-pre">
 							{title}
 						</motion.div>
-					)}
+					) : null}
 				</AnimatePresence>
 				<motion.div style={{ width: widthIcon, height: heightIcon }} className="flex items-center justify-center">
 					{icon}
@@ -92,14 +99,14 @@ export function DockAnchor({ title, icon, href, className }: DockAnchorProps) {
 			</motion.div>
 		</a>
 	)
-}
+})
 
 export interface DockButtonProps extends Option {
 	onClick: () => unknown
 	className?: string
 }
 
-export function DockButton({ title, icon, className, onClick }: DockButtonProps) {
+export const DockButton = memo(({ title, icon, className, onClick }: DockButtonProps) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const ref = useRef<HTMLDivElement | null>(null!)
 	const { mouseX } = useDock()
@@ -121,16 +128,19 @@ export function DockButton({ title, icon, className, onClick }: DockButtonProps)
 	const widthIcon = useSpring(widthTransformIcon, TRANSITION)
 	const heightIcon = useSpring(heightTransformIcon, TRANSITION)
 
+	const handleMouseEnter = useCallback(() => setIsHovered(true), [])
+	const handleMouseLeave = useCallback(() => setIsHovered(false), [])
+
 	return (
 		<button onClick={onClick} className="cursor-pointer">
 			<motion.div
 				ref={ref}
 				style={{ width, height }}
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
 				className={cn("bg-secondary relative flex aspect-square items-center justify-center rounded-full", className)}>
 				<AnimatePresence>
-					{isHovered && (
+					{isHovered ? (
 						<motion.div
 							initial={{ opacity: 0, y: 10, x: "-50%" }}
 							animate={{ opacity: 1, y: 0, x: "-50%" }}
@@ -138,7 +148,7 @@ export function DockButton({ title, icon, className, onClick }: DockButtonProps)
 							className="bg-secondary text-primary absolute -top-7 left-1/2 w-fit rounded-md px-2 py-0.5 text-xs whitespace-pre">
 							{title}
 						</motion.div>
-					)}
+					) : null}
 				</AnimatePresence>
 				<motion.div style={{ width: widthIcon, height: heightIcon }} className="flex items-center justify-center">
 					{icon}
@@ -146,4 +156,11 @@ export function DockButton({ title, icon, className, onClick }: DockButtonProps)
 			</motion.div>
 		</button>
 	)
-}
+})
+
+DockButton.displayName = "DockButton"
+
+Dock.Anchor = DockAnchor
+Dock.Button = DockButton
+
+export default Dock

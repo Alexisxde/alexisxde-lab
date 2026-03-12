@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
+import React, { memo } from "react"
 
 interface InputProps extends React.ComponentPropsWithRef<"input"> {
 	message?: string
@@ -9,7 +10,7 @@ interface InputProps extends React.ComponentPropsWithRef<"input"> {
 	labelClassName?: string
 }
 
-export default function Input({
+const Input = memo(({
 	icon,
 	label,
 	labelClassName,
@@ -19,7 +20,7 @@ export default function Input({
 	message,
 	disabled,
 	...props
-}: InputProps) {
+}: InputProps) => {
 	return (
 		<>
 			<label
@@ -31,7 +32,7 @@ export default function Input({
 						"bg-card text-gray pointer-events-none absolute -top-2 left-2.5 h-fit px-1.5 text-[10px]",
 						labelClassName
 					)}>
-					{label} {!optional && <b className="text-destructive">*</b>}
+					{label} {!optional ? <b className="text-destructive">*</b> : null}
 				</label>
 				{icon}
 				<input
@@ -46,7 +47,7 @@ export default function Input({
 					{...props}
 				/>
 			</label>
-			{!!message && (
+			{message ? (
 				<motion.p
 					initial={{ opacity: 0, y: 10 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -55,7 +56,11 @@ export default function Input({
 					className="text-destructive ml-0.5 text-xs">
 					{message}
 				</motion.p>
-			)}
+			) : null}
 		</>
 	)
-}
+})
+
+Input.displayName = "Input"
+
+export default Input

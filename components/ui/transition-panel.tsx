@@ -1,6 +1,7 @@
 "use client"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion, MotionProps, Transition, Variant } from "motion/react"
+import React, { memo } from "react"
 
 export type TransitionPanelProps = {
 	children: React.ReactNode[]
@@ -10,14 +11,14 @@ export type TransitionPanelProps = {
 	variants?: { enter: Variant; center: Variant; exit: Variant }
 } & MotionProps
 
-export function TransitionPanel({
+export const TransitionPanel = memo(({
 	children,
 	className,
 	transition = { x: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.2 } },
 	variants,
 	activeIndex,
 	...motionProps
-}: TransitionPanelProps) {
+}: TransitionPanelProps) => {
 	return (
 		<div className={cn("relative", className)}>
 			<AnimatePresence initial={false} mode="popLayout" custom={motionProps.custom}>
@@ -34,4 +35,6 @@ export function TransitionPanel({
 			</AnimatePresence>
 		</div>
 	)
-}
+})
+
+TransitionPanel.displayName = "TransitionPanel"

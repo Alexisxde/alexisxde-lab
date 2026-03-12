@@ -1,0 +1,44 @@
+export const metadata = {
+	title: "Modal - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import ModalDefault from "./modal-default"
+
+# Modal
+
+Un componente de ventana emergente versátil y animado para flujos de confirmación y presentación de contenido.
+
+> **Nota:** Todos los subcomponentes pueden usarse como `<ModalTrigger />` o mediante la notación de punto `<Modal.Trigger />`.
+
+## Modal Default
+
+<ComponentCodePreview component={<ModalDefault />} filePath="app/component/modal/modal-default.tsx" />
+
+## Component API
+
+### Modal
+
+| Prop        | Type                                | Default   | Description                                   |
+| :---------- | :---------------------------------- | :-------- | :-------------------------------------------- |
+| `children`  | `React.ReactNode`                   | Requerido | Envuelve los componentes del modal.           |
+| `isOpen`    | `boolean`                           | Requerido | Controla el estado visible del modal.         |
+| `setIsOpen` | `Dispatch<SetStateAction<boolean>>` | Requerido | Función para actualizar el estado de apertura. |
+
+### ModalTrigger
+
+| Prop        | Type              | Default     | Description                                           |
+| :---------- | :---------------- | :---------- | :---------------------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | Elemento que activa el modal al hacer clic.           |
+| `asChild`   | `boolean`         | `false`     | Si es true, usa el componente hijo como disparador.   |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el disparador.            |
+
+### ModalAction / ModalClose
+
+Botones predefinidos para realizar acciones o cerrar el modal. 
+
+| Prop        | Type              | Default     | Description                                           |
+| :---------- | :---------------- | :---------- | :---------------------------------------------------- |
+| `asChild`   | `boolean`         | `false`     | Si es true, delega el renderizado al hijo.            |
+| `onClick`   | `function`        | `undefined` | Función que se ejecuta al hacer clic.                 |
+| `className` | `string`          | `undefined` | Clases CSS adicionales.                               |

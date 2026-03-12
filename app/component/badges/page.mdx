@@ -1,0 +1,35 @@
+export const metadata = {
+	title: "Badges - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import BadgeAsChild from "./badge-as-child"
+import BadgeVariants from "./badge-variants"
+
+# Badges
+
+Pequeños elementos visuales para etiquetar o categorizar contenido.
+
+## Badge Variants
+
+<ComponentCodePreview component={<BadgeVariants />} filePath="app/component/badges/badge-variants.tsx" />
+
+## Badge asChild
+
+Utiliza la propiedad `asChild` para delegar el renderizado al componente hijo. Esto es útil cuando necesitas integrar el estilo del Badge con componentes de navegación como `Link` de Next.js.
+
+<ComponentCodePreview component={<BadgeAsChild />} filePath="app/component/badges/badge-as-child.tsx" />
+
+## Component API
+
+### Badge
+
+| Prop        | Type                                                | Default     | Description                                |
+| :---------- | :-------------------------------------------------- | :---------- | :----------------------------------------- |
+| `children`  | `React.ReactNode`                                   | Requerido   | El contenido del badge.                    |
+| `variant`   | `primary \| secondary \| outline \| destructive`    | `primary`   | El estilo visual del badge.                |
+| `size`      | `xs \| sm \| md \| lg`                              | `xs`        | El tamaño del badge.                       |
+| `href`      | `string`                                            | `undefined` | Si se proporciona, el badge actúa como un enlace `<a>`. |
+| `disabled`  | `boolean`                                           | `false`     | Desactiva las interacciones si es true.    |
+| `asChild`   | `boolean`                                           | `false`     | Si es true, el badge se comportará como su hijo. |
+| `className` | `string`                                            | `undefined` | Clases CSS adicionales para el contenedor. |

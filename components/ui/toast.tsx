@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils"
 import { cva } from "class-variance-authority"
 import { AnimatePresence, motion } from "motion/react"
-import { createContext, useContext, useEffect, useMemo, useState } from "react"
+import React, { createContext, useContext, useEffect, useMemo, useState, useCallback, memo } from "react"
 import { createPortal } from "react-dom"
 
 export type Variant = "default" | "error" | "warning" | "success"
@@ -27,23 +27,25 @@ const ToastContext = createContext<ToastContextType | null>(null)
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 	const [list, setList] = useState<ToastProps[]>([])
 
-	const createToast = (type: Variant) => {
+	const createToast = useCallback((type: Variant) => {
 		return ({ text, className, icon, content }: Toast) => {
 			const id = Math.random()
-			if (list.length > 4) setList(prev => prev.slice(1, list.length))
-			setList(prev => [...prev, { id, text, icon, type, className, content }])
+			setList(prev => {
+				const newList = prev.length >= 4 ? prev.slice(1) : prev
+				return [...newList, { id, text, icon, type, className, content }]
+			})
 			setTimeout(() => {
 				setList(prev => prev.filter(item => item.id !== id))
 			}, 5000)
 		}
-	}
+	}, [])
 
-	const toast = {
+	const toast = useMemo(() => ({
 		default: createToast("default"),
 		error: createToast("error"),
 		success: createToast("success"),
 		warning: createToast("warning")
-	}
+	}), [createToast])
 
 	const contextValue = useMemo(() => ({ list, toast }), [list, toast])
 

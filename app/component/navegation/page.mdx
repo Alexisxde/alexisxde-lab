@@ -1,0 +1,30 @@
+export const metadata = {
+	title: "Navegation - Alexisxde"
+}
+
+import ComponentCodePreview from "@/components/component-code-preview"
+import MenuDefault from "./menu-default"
+
+# Navegation
+
+Un menú de navegación elegante y compacto que se adapta a la ruta actual para resaltar la sección activa.
+
+## Menu
+
+<ComponentCodePreview component={<MenuDefault />} filePath="app/component/navegation/menu-default.tsx" />
+
+## Component API
+
+### Menu
+
+| Prop        | Type              | Default     | Description                                |
+| :---------- | :---------------- | :---------- | :----------------------------------------- |
+| `items`     | `Item[]`          | Requerido   | Arreglo de elementos que conforman el menú. |
+
+### Item
+
+| Prop        | Type              | Default     | Description                                |
+| :---------- | :---------------- | :---------- | :----------------------------------------- |
+| `title`     | `string`          | Requerido   | Texto que se muestra al estar activo.      |
+| `icon`      | `React.ReactNode` | Requerido   | Icono que se muestra para cada opción.     |
+| `href`      | `string`          | Requerido   | Ruta hacia la cual se navegará.             |

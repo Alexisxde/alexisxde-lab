@@ -7,7 +7,9 @@ import MorphingDialog from "@/components/examples/morphing-dialog"
 
 # Morphing Dialog
 
-asd
+Un componente de diálogo versátil que utiliza animaciones de transición de layout para transformar un elemento disparador en un contenedor de contenido fluido.
+
+> **Nota:** Todos los subcomponentes pueden usarse como `<MorphingDialogTrigger />` o mediante la notación de punto `<MorphingDialog.Trigger />`.
 
 ## Morphing Dialog
 
@@ -17,66 +19,66 @@ asd
 
 ### MorphingDialog
 
-| Prop         | Type                                | Default                                           | Description                           |
-| :----------- | :---------------------------------- | :------------------------------------------------ | :------------------------------------ |
-| `children`   | `React.ReactNode`                   | Requerido                                         | El contenido del `MorphingDialog`.    |
-| `transition` | `Transition`                        | `{ type: "spring", stiffness: 200, damping: 24 }` | Transiciones hechas con motion/react. |
-| `isOpen`     | `boolean`                           | Requerido                                         | .                                     |
-| `setIsOpen`  | `Dispatch<SetStateAction<boolean>>` | Requerido                                         | .                                     |
+| Prop         | Type                                | Default                                           | Description                                            |
+| :----------- | :---------------------------------- | :------------------------------------------------ | :----------------------------------------------------- |
+| `children`   | `React.ReactNode`                   | Requerido                                         | El contenido que envuelve el disparador y el diálogo.  |
+| `transition` | `Transition`                        | `{ type: "spring", stiffness: 200, damping: 24 }` | Configuración de la animación de Framer Motion.       |
+| `isOpen`     | `boolean`                           | Requerido                                         | Controla el estado de apertura del diálogo.            |
+| `setIsOpen`  | `Dispatch<SetStateAction<boolean>>` | Requerido                                         | Función para actualizar el estado de apertura.         |
 
 ### MorphingDialogTrigger
 
-| Prop        | Type              | Default     | Description                               |
-| :---------- | :---------------- | :---------- | :---------------------------------------- |
-| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogTrigger`. |
-| `className` | `string`          | `undefined` | .                                         |
-| `asChild`   | `boolean`         | `false`     | .                                         |
+| Prop        | Type              | Default     | Description                                           |
+| :---------- | :---------------- | :---------- | :---------------------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | Elemento que activará la apertura del diálogo.        |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el disparador.            |
+| `asChild`   | `boolean`         | `false`     | Si es true, el diálogo usará el hijo como disparador. |
 
 ### MorphingDialogContent
 
-| Prop        | Type              | Default     | Description                               |
-| :---------- | :---------------- | :---------- | :---------------------------------------- |
-| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogContent`. |
-| `className` | `string`          | `undefined` | .                                         |
-| `style`     | `CSSProperties`   | `undefined` | .                                         |
+| Prop        | Type              | Default     | Description                                     |
+| :---------- | :---------------- | :---------- | :---------------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | El contenido que se mostrará dentro del diálogo. |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenido.        |
+| `style`     | `CSSProperties`   | `undefined` | Estilos en línea para el contenedor.            |
 
 ### MorphingDialogContainer
 
-| Prop        | Type              | Default     | Description                                 |
-| :---------- | :---------------- | :---------- | :------------------------------------------ |
-| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogContainer`. |
-| `className` | `string`          | `undefined` | .                                           |
-| `overlay`   | `boolean`         | `true`      | .                                           |
+| Prop        | Type              | Default     | Description                                          |
+| :---------- | :---------------- | :---------- | :--------------------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | Envuelve el contenido y maneja el portal/overlay.    |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el contenedor principal. |
+| `overlay`   | `boolean`         | `true`      | Si se debe mostrar un fondo oscuro tras el diálogo.  |
 
 ### MorphingDialogTitle
 
-| Prop        | Type              | Default     | Description                             |
-| :---------- | :---------------- | :---------- | :-------------------------------------- |
-| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogTitle`. |
-| `className` | `string`          | `undefined` | .                                       |
-| `style`     | `CSSProperties`   | `undefined` | .                                       |
+| Prop        | Type              | Default     | Description                            |
+| :---------- | :---------------- | :---------- | :------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | El título del diálogo.                 |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el título. |
+| `style`     | `CSSProperties`   | `undefined` | Estilos en línea para el título.       |
 
 ### MorphingDialogSubTitle
 
-| Prop        | Type              | Default     | Description                                |
-| :---------- | :---------------- | :---------- | :----------------------------------------- |
-| `children`  | `React.ReactNode` | Requerido   | El contenido del `MorphingDialogSubtitle`. |
-| `className` | `string`          | `undefined` | .                                          |
-| `style`     | `CSSProperties`   | `undefined` | .                                          |
+| Prop        | Type              | Default     | Description                               |
+| :---------- | :---------------- | :---------- | :---------------------------------------- |
+| `children`  | `React.ReactNode` | Requerido   | Un subtítulo o texto secundario.          |
+| `className` | `string`          | `undefined` | Clases CSS adicionales para el subtítulo. |
+| `style`     | `CSSProperties`   | `undefined` | Estilos en línea para el subtítulo.       |
 
 ### MorphingDialogDescription
 
-| Prop        | Type                                                    | Default     | Description                                   |
-| :---------- | :------------------------------------------------------ | :---------- | :-------------------------------------------- |
-| `children`  | `React.ReactNode`                                       | Requerido   | El contenido del `MorphingDialogDescription`. |
-| `className` | `string`                                                | `undefined` | .                                             |
-| `variants`  | `{ initial: Variant; animate: Variant; exit: Variant }` | `undefined` | .                                             |
+| Prop        | Type                                                    | Default     | Description                                    |
+| :---------- | :------------------------------------------------------ | :---------- | :--------------------------------------------- |
+| `children`  | `React.ReactNode`                                       | Requerido   | Texto descriptivo largo.                       |
+| `className` | `string`                                                | `undefined` | Clases CSS adicionales para la descripción.    |
+| `variants`  | `{ initial: Variant; animate: Variant; exit: Variant }` | `undefined` | Variantes de animación personalizadas.          |
 
 ### MorphingDialogImage
 
-| Prop        | Type            | Default     | Description |
-| :---------- | :-------------- | :---------- | :---------- |
-| `src`       | `string`        | Requerido   | .           |
-| `alt`       | `string`        | Requerido   | .           |
-| `className` | `string`        | `undefined` | .           |
-| `style`     | `CSSProperties` | `undefined` | .           |
+| Prop        | Type            | Default     | Description                                      |
+| :---------- | :-------------- | :---------- | :----------------------------------------------- |
+| `src`       | `string`        | Requerido   | Fuente de la imagen.                             |
+| `alt`       | `string`        | Requerido   | Texto alternativo para accesibilidad.            |
+| `className` | `string`        | `undefined` | Clases CSS adicionales para la imagen.           |
+| `style`     | `CSSProperties` | `undefined` | Estilos en línea para el elemento de imagen.     |

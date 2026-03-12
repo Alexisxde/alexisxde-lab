@@ -1,8 +1,8 @@
 "use client"
 import { TransitionPanel } from "@/components/ui/transition-panel"
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useMemo, useState, memo } from "react"
 
-function Button({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
+const Button = memo(({ onClick, children }: { onClick: () => void; children: React.ReactNode }) => {
 	return (
 		<button
 			onClick={onClick}
@@ -11,45 +11,45 @@ function Button({ onClick, children }: { onClick: () => void; children: React.Re
 			{children}
 		</button>
 	)
-}
+})
+
+Button.displayName = "Button"
+
+const FEATURES = [
+	{
+		title: "Brand",
+		description:
+			"Develop a distinctive brand identity with tailored logos and guidelines to ensure consistent messaging across all platforms."
+	},
+	{
+		title: "Product",
+		description:
+			"Design and refine products that excel in user experience, meeting needs effectively and creating memorable interactions. We specialize in web applications."
+	},
+	{
+		title: "Website",
+		description:
+			"Create impactful websites that combine beautiful aesthetics with functional design, ensuring a superior online presence."
+	},
+	{
+		title: "Design System",
+		description:
+			"Develop a design system that unifies your brand identity, ensuring consistency across all platforms and products."
+	}
+]
+
 export function TransitionPanelCard() {
 	const [activeIndex, setActiveIndex] = useState(0)
 	const [direction, setDirection] = useState(1)
 
-	const FEATURES = [
-		{
-			title: "Brand",
-			description:
-				"Develop a distinctive brand identity with tailored logos and guidelines to ensure consistent messaging across all platforms."
-		},
-		{
-			title: "Product",
-			description:
-				"Design and refine products that excel in user experience, meeting needs effectively and creating memorable interactions. We specialize in web applications."
-		},
-		{
-			title: "Website",
-			description:
-				"Create impactful websites that combine beautiful aesthetics with functional design, ensuring a superior online presence."
-		},
-		{
-			title: "Design System",
-			description:
-				"Develop a design system that unifies your brand identity, ensuring consistency across all platforms and products."
-		}
-	]
+	const handleSetActiveIndex = useCallback((newIndex: number) => {
+		setActiveIndex(prevIndex => {
+			setDirection(newIndex > prevIndex ? 1 : -1)
+			return Math.max(0, Math.min(newIndex, FEATURES.length - 1))
+		})
+	}, [])
 
-	const handleSetActiveIndex = (newIndex: number) => {
-		setDirection(newIndex > activeIndex ? 1 : -1)
-		setActiveIndex(newIndex)
-	}
-
-	useEffect(() => {
-		if (activeIndex < 0) setActiveIndex(0)
-		if (activeIndex >= FEATURES.length) setActiveIndex(FEATURES.length - 1)
-	}, [activeIndex])
-
-	const variants = {
+	const variants = useMemo(() => ({
 		enter: (direction: number) => ({
 			x: direction > 0 ? 364 : -364,
 			opacity: 0
@@ -68,7 +68,14 @@ export function TransitionPanelCard() {
 			left: 0,
 			width: "100%"
 		})
-	}
+	}), [])
+
+	const handlePrev = useCallback(() => handleSetActiveIndex(activeIndex - 1), [handleSetActiveIndex, activeIndex])
+	const handleNext = useCallback(() => {
+		if (activeIndex < FEATURES.length - 1) {
+			handleSetActiveIndex(activeIndex + 1)
+		}
+	}, [handleSetActiveIndex, activeIndex])
 
 	return (
 		<div className="w-[364px] overflow-hidden rounded-xl border border-zinc-950/10 bg-white dark:bg-zinc-700">
@@ -81,8 +88,12 @@ export function TransitionPanelCard() {
 				))}
 			</TransitionPanel>
 			<div className="flex justify-between p-4">
-				{activeIndex > 0 ? <Button onClick={() => handleSetActiveIndex(activeIndex - 1)}>Previous</Button> : <div />}
-				<Button onClick={() => (activeIndex === FEATURES.length - 1 ? null : handleSetActiveIndex(activeIndex + 1))}>
+				{activeIndex > 0 ? (
+					<Button onClick={handlePrev}>Previous</Button>
+				) : (
+					<div />
+				)}
+				<Button onClick={handleNext}>
 					{activeIndex === FEATURES.length - 1 ? "Close" : "Next"}
 				</Button>
 			</div>
