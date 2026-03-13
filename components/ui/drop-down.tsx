@@ -41,7 +41,11 @@ export function DropDownMenu({ children, open: controlledOpen, onOpenChange }: D
 
 	const contextValue = useMemo(() => ({ isOpen, setIsOpen, triggerRef }), [isOpen, setIsOpen])
 
-	return <DropDownMenuContext.Provider value={contextValue}>{children}</DropDownMenuContext.Provider>
+	return (
+		<DropDownMenuContext.Provider value={contextValue}>
+			<div className="relative inline-block">{children}</div>
+		</DropDownMenuContext.Provider>
+	)
 }
 
 export interface DropDownMenuTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
