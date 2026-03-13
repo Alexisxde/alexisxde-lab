@@ -1,6 +1,7 @@
 "use client"
 import { COMPONENTS } from "@/components/components"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 export default function Sidebar() {
@@ -11,7 +12,7 @@ export default function Sidebar() {
 			<h2 className="text-gray mb-2 text-sm">Componentes</h2>
 			<nav className="flex w-full max-w-sm flex-col gap-2">
 				{COMPONENTS.map(({ name, href }, i) => (
-					<a key={`${name}-${i}`} href={href} className="cursor-pointer select-none">
+					<Link key={`${name}-${i}`} href={href} className="cursor-pointer select-none">
 						<div
 							className={cn(
 								"group relative flex min-h-8 w-full items-center gap-2",
@@ -23,7 +24,7 @@ export default function Sidebar() {
 								{name}
 							</span>
 						</div>
-					</a>
+					</Link>
 				))}
 			</nav>
 		</aside>
